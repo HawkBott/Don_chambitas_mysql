@@ -1,5 +1,4 @@
 
-/* Falta por definir el tipo de dato del telefono*/
 
 /* Creacion tabla usuarios*/
 CREATE TABLE usuarios (
@@ -8,7 +7,6 @@ CREATE TABLE usuarios (
     apellido_paterno VARCHAR(255),
     apellido_materno VARCHAR(255),
     edad INT,
-    telefono VARCHAR(255),
     rol_id INT,
     cuenta_id INT,
     address_id INT,
@@ -16,6 +14,15 @@ CREATE TABLE usuarios (
     FOREIGN KEY (cuenta_id) REFERENCES cuentas(id_cuenta),
     FOREIGN KEY (address_id) REFERENCES direcciones(id_direccion)
 );
+
+/*Creacion de la table contactos*/
+CREATE TABLE contacto (
+  id_contacto INT AUTO_INCREMENT PRIMARY KEY,
+  telefono VARCHAR(255),
+  usuario_id INT,
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(id_usuario)
+);
+
 
 /* Creacion tabla clientes*/
 CREATE TABLE clientes(
@@ -66,4 +73,14 @@ CREATE TABLE codigo_postal (
     codigo_postal INT,
     estado_o_provincia_id INT
     FOREIGN KEY (estado_o_provincia_id) REFERENCES estado_o_provincia (id_estado_o_provincia)
+);
+
+/* Creacion de tabla datos bancarios*/
+CREATE TABLE datos_bancarios(
+    id_datos_bancarios INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT,
+    numero_tarjeta INT,
+    fecha_expiracion INT,
+    codigo_seguridad INT,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios (id_usuario)
 );

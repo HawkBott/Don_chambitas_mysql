@@ -58,38 +58,29 @@ CREATE TABLE usuarios (
     apellido_paterno VARCHAR(255),
     apellido_materno VARCHAR(255),
     edad INT,
-    telefono VARCHAR(255),
     rol_id INT,
     cuenta_id INT,
     address_id INT,
     FOREIGN KEY (rol_id) REFERENCES roles(id_rol),
     FOREIGN KEY (cuenta_id) REFERENCES cuentas(id_cuenta),
-    FOREIGN KEY (address_id) REFERENCES addresses(id_address)
+    FOREIGN KEY (address_id) REFERENCES direcciones(id_direccion)
 );
 
-/* Creacion tabla clientes*/
-CREATE TABLE clientes(
-    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
-    rol_id INT,
-    FOREIGN KEY (rol_id) REFERENCES roles (id_rol)
-);
-
-/* Creacion tabla servicios*/
-CREATE TABLE servicios (
-    id_servicio INT AUTO_INCREMENT PRIMARY KEY,
-    oficio_id INT,
-    profesion_id INT,
-    FOREIGN KEY (oficio_id) REFERENCES oficios(id_oficio),
-    FOREIGN KEY (profesion_id) REFERENCES profesiones (id_profesion)
+/*Creacion de la table contactos*/
+CREATE TABLE contacto (
+  id_contacto INT AUTO_INCREMENT PRIMARY KEY,
+  telefono VARCHAR(255),
+  usuario_id INT,
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(id_usuario)
 );
 
 /* Creacion tabla trabajadores*/
 CREATE TABLE trabajadores(
     id_trabajador INT AUTO_INCREMENT PRIMARY KEY,
-    rol_id INT,
-    servicio_id INT,
-    FOREIGN KEY (rol_id) REFERENCES roles (id_rol),
-    FOREIGN KEY (servicio_id) REFERENCES servicios (id_servicio)
+    usuario__id INT,
+    profesion_id INT,
+    FOREIGN KEY (usuario__id) REFERENCES usuarios (id_usuario),
+    FOREIGN KEY (profesion_id) REFERENCES profesiones (id_profesion)
 );
 
 
@@ -112,10 +103,9 @@ CREATE TABLE codigo_postal (
 /*tablas NtoM*/
 
 /* Creacion tabla carrito cuando el cliente pide un trabajo*/
-CREATE TABLE trabajador_realiza_trabajo(
-    id_trabajo_to_realice INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE solicitar_servicio(
+    id_solicitud INT AUTO_INCREMENT PRIMARY KEY,
     clientes_id INT, 
     trabajador_id INT,
-    FOREIGN KEY (clientes_id) REFERENCES clientes (id_cliente),
     FOREIGN KEY (trabajador_id) REFERENCES trabajadores (id_trabajador)
 );

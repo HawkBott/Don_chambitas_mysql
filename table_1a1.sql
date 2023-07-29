@@ -23,8 +23,5 @@ CREATE TABLE profesiones (
     name_profesion VARCHAR (255)
 )
 
-/* Creacion tabla oficios*/
-CREATE TABLE oficios (
-    id_oficio INT AUTO_INCREMENT PRIMARY KEY,
-    name_oficio VARCHAR (255)
-)
+
+
