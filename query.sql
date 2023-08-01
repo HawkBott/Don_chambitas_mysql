@@ -52,7 +52,7 @@ INSERT INTO addresses (calle, numero_exterior, numero_interior, country_id) VALU
 ('Eiffel Tower', '1000', 'J', 10);
 
 /* tabla usuarios*/
-INSERT INTO usuarios (nombre, apellido_paterno, apellido_materno, edad, rol_id, cuenta_id, address_id) VALUES
+INSERT INTO usuarios (nombre_usuario, apellido_paterno, apellido_materno, edad, rol_id, cuenta_id, address_id) VALUES
 ('Juan', 'Perez', 'Rodriguez', 30, 1, 1, 1),
 ('Maria', 'Gonzalez', 'Martinez', 25, 2, 2, 2),
 ('Pedro', 'Sanchez', 'Gomez', 40, 1, 3, 3),
@@ -78,7 +78,7 @@ INSERT INTO estado_o_provincia (name_estado_o_provincia, country_id) VALUES
 ('China', 4);
 
 /* tabla codigo posta*/
-INSERT INTO codigo_postal (codigo_postal, estado_o_provincia_id) VALUES
+INSERT INTO codigo_postal (numero_codigo_postal, estado_o_provincia_id) VALUES
 (91234, 1),
 (78765, 1),
 (33069, 1),
@@ -103,7 +103,7 @@ INSERT INTO datos_bancarios (usuario_id, numero_tarjeta, fecha_expiracion, codig
 (9, 5678901234567890, 0327, 789),
 (10, 2345678901234567, 0824, 234);
 
-INSERT INTO contacto (telefono, usuario_id) VALUES
+INSERT INTO contactos (telefono, usuario_id) VALUES
 ('123-456-7890', 1),
 ('555-678-9012', 2),
 ('987-654-3210', 3),

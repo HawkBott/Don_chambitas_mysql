@@ -44,7 +44,7 @@ CREATE TABLE addresses (
 /* Creacion tabla usuarios*/
 CREATE TABLE usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(255),
+    nombre_usuario VARCHAR(255),
     apellido_paterno VARCHAR(255),
     apellido_materno VARCHAR(255),
     edad INT,
@@ -74,7 +74,7 @@ CREATE TABLE estado_o_provincia (
 /* Creacion tabla codigo postal*/
 CREATE TABLE codigo_postal (
     id_codigo_postal INT AUTO_INCREMENT PRIMARY KEY,
-    codigo_postal INT,
+    numero_codigo_postal INT,
     estado_o_provincia_id INT,
     FOREIGN KEY (estado_o_provincia_id) REFERENCES estado_o_provincia (id_estado_o_provincia)
 );
@@ -91,7 +91,7 @@ CREATE TABLE datos_bancarios(
 
 
 /* Creacion de tabla contacto*/
-CREATE TABLE contacto(
+CREATE TABLE contactos(
     id_contacto INT AUTO_INCREMENT PRIMARY KEY,
     telefono VARCHAR (255),
     usuario_id INT,
