@@ -29,24 +29,16 @@ CREATE TABLE clientes(
     id_cliente INT AUTO_INCREMENT PRIMARY KEY,
     rol_id INT,
     FOREIGN KEY (rol_id) REFERENCES roles (id_rol)
-)
-
-/* Creacion tabla servicios*/
-CREATE TABLE servicios (
-    id_servicio INT AUTO_INCREMENT PRIMARY KEY,
-    oficio_id INT,
-    profesion_id INT,
-    FOREIGN KEY (oficio_id) REFERENCES oficios(id_oficio),
-    FOREIGN KEY (profesion_id) REFERENCES profesiones (id_profesion)
 );
+
 
 /* Creacion tabla trabajadores*/
 CREATE TABLE trabajadores(
     id_trabajador INT AUTO_INCREMENT PRIMARY KEY,
-    rol_id INT,
-    servicio_id INT,
-    FOREIGN KEY (rol_id) REFERENCES roles (id_rol),
-    FOREIGN KEY (servicio_id) REFERENCES servicios (id_servicio)
+    usuario_id INT,
+    profesion_id INT,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios (id_usuario),
+    FOREIGN KEY (profesion_id) REFERENCES profesiones (id_profesion)
 );
 
 /* Creacion tabla addresses*/
@@ -84,3 +76,14 @@ CREATE TABLE datos_bancarios(
     codigo_seguridad INT,
     FOREIGN KEY (usuario_id) REFERENCES usuarios (id_usuario)
 );
+
+
+/* Creacion de tabla contacto*/
+CREATE TABLE contacto(
+    id_contacto INT AUTO_INCREMENT PRIMARY KEY,
+    telefono VARCHAR (255),
+    usuario_id
+    FOREIGN KEY (usuario_id) REFERENCES usuarios (id_usuario)
+);
+
+

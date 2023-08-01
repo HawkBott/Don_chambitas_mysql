@@ -7,36 +7,26 @@ use don_chambitas;
 /* Creacion tabla roles*/
 CREATE TABLE roles (
     id_rol INT AUTO_INCREMENT PRIMARY KEY,
-    name_rol VARCHAR(255)
+    name_rol VARCHAR (255)
 );
 
-
-/* Creacion tabla cuentas de registro*/
+/* Creacion tabla cuentas*/
 CREATE TABLE cuentas (
     id_cuenta INT AUTO_INCREMENT PRIMARY KEY,
-    correo_electronico VARCHAR(255),
-    my_password VARCHAR(255)
+    correo_electronico VARCHAR (255),
+    my_password VARCHAR (255)
 );
-
 
 /* Creacion tabla countries*/
 CREATE TABLE countries (
     id_country INT AUTO_INCREMENT PRIMARY KEY,
-    name_country VARCHAR(255)
+    name_country VARCHAR (255)
 );
-
 
 /* Creacion tabla profesiones*/
 CREATE TABLE profesiones (
     id_profesion INT AUTO_INCREMENT PRIMARY KEY,
-    name_profesion VARCHAR(255)
-);
-
-
-/* Creacion tabla oficios*/
-CREATE TABLE oficios (
-    id_oficio INT AUTO_INCREMENT PRIMARY KEY,
-    name_oficio VARCHAR (255)
+    name_profesion VARCHAR (255)
 );
 
 /*tablas  1toN*/
@@ -63,26 +53,15 @@ CREATE TABLE usuarios (
     address_id INT,
     FOREIGN KEY (rol_id) REFERENCES roles(id_rol),
     FOREIGN KEY (cuenta_id) REFERENCES cuentas(id_cuenta),
-    FOREIGN KEY (address_id) REFERENCES direcciones(id_direccion)
+    FOREIGN KEY (address_id) REFERENCES addresses(id_address)
 );
 
-/*Creacion de la table contactos*/
-CREATE TABLE contacto (
-  id_contacto INT AUTO_INCREMENT PRIMARY KEY,
-  telefono VARCHAR(255),
-  usuario_id INT,
-  FOREIGN KEY (usuario_id) REFERENCES usuarios(id_usuario)
+/* Creacion tabla clientes*/
+CREATE TABLE clientes(
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+    rol_id INT,
+    FOREIGN KEY (rol_id) REFERENCES roles (id_rol)
 );
-
-/* Creacion tabla trabajadores*/
-CREATE TABLE trabajadores(
-    id_trabajador INT AUTO_INCREMENT PRIMARY KEY,
-    usuario__id INT,
-    profesion_id INT,
-    FOREIGN KEY (usuario__id) REFERENCES usuarios (id_usuario),
-    FOREIGN KEY (profesion_id) REFERENCES profesiones (id_profesion)
-);
-
 
 /* Creacion tabla estado o provincia*/
 CREATE TABLE estado_o_provincia (
@@ -100,12 +79,25 @@ CREATE TABLE codigo_postal (
     FOREIGN KEY (estado_o_provincia_id) REFERENCES estado_o_provincia (id_estado_o_provincia)
 );
 
-/*tablas NtoM*/
-
-/* Creacion tabla carrito cuando el cliente pide un trabajo*/
-CREATE TABLE solicitar_servicio(
-    id_solicitud INT AUTO_INCREMENT PRIMARY KEY,
-    clientes_id INT, 
-    trabajador_id INT,
-    FOREIGN KEY (trabajador_id) REFERENCES trabajadores (id_trabajador)
+/* Creacion de tabla datos bancarios*/
+CREATE TABLE datos_bancarios(
+    id_datos_bancarios INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT,
+    numero_tarjeta VARCHAR (255),
+    fecha_expiracion INT,
+    codigo_seguridad INT,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios (id_usuario)
 );
+
+
+/* Creacion de tabla contacto*/
+CREATE TABLE contacto(
+    id_contacto INT AUTO_INCREMENT PRIMARY KEY,
+    telefono VARCHAR (255),
+    usuario_id INT,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios (id_usuario)
+);
+
+
+
+/* Creacion de tabla solicitar servicio*/
