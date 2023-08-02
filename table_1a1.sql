@@ -24,8 +24,24 @@ CREATE TABLE profesiones (
     name_profesion VARCHAR (255)
 );
 
+/* Creacion de tabla datos educacion*/
+CREATE TABLE datos_educacion (
+    id_datos_educacion INT AUTO_INCREMENT PRIMARY KEY, 
+    nombre_universidad VARCHAR(255),
+    titulo_obtenido BLOB,
+    year_graduation VARCHAR (255),
+    proyectos_destacados TEXT
+);
 
+/* Creacion de tabla residencia*/
+CREATE TABLE tipo_residencia(
+    id_tipo_residencia INT AUTO_INCREMENT PRIMARY KEY, 
+    nombre_tipo_residencia VARCHAR (255)
+);
 
-
-
+/* Creacion de tabla tipo licencia*/
+CREATE TABLE tipo_licencia(
+    id_tipo_licencia INT AUTO_INCREMENT PRIMARY KEY, 
+    nombre_tipo_licencia VARCHAR (255)
+);
 

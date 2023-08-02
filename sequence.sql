@@ -29,6 +29,28 @@ CREATE TABLE profesiones (
     name_profesion VARCHAR (255)
 );
 
+/* Creacion de tabla datos educacion*/
+CREATE TABLE datos_educacion (
+    id_datos_educacion INT AUTO_INCREMENT PRIMARY KEY, 
+    nombre_universidad VARCHAR(255),
+    titulo_obtenido BLOB,
+    year_graduation DATE,
+    proyectos_destacados TEXT
+);
+
+/* Creacion de tabla residencia*/
+CREATE TABLE tipo_residencia(
+    id_tipo_residencia INT AUTO_INCREMENT PRIMARY KEY, 
+    nombre_tipo_residencia VARCHAR (255)
+);
+
+/* Creacion de tabla tipo licencia*/
+CREATE TABLE tipo_licencia(
+    id_tipo_licencia INT AUTO_INCREMENT PRIMARY KEY, 
+    nombre_tipo_licencia VARCHAR (255)
+);
+
+
 /*tablas  1toN*/
 
 /* Creacion tabla addresses*/
@@ -98,6 +120,31 @@ CREATE TABLE contactos(
     FOREIGN KEY (usuario_id) REFERENCES usuarios (id_usuario)
 );
 
+/* Creacion de tabla documentacion del trabajador*/
+CREATE TABLE documentacion_trabajador(
+    id_documento INT AUTO_INCREMENT PRIMARY KEY, 
+    numero_curp VARCHAR (255),
+    numero_cartilla_militar VARCHAR (255),
+    numero_pasaporte VARCHAR (255),
+    tipo_residencia_id INT,
+    doc_extranjero BLOB,
+    licencia_manejo BOOLEAN,
+    tipo_licencia_id INT,
+    numero_licencia VARCHAR (255),
+    FOREIGN KEY (tipo_residencia_id) REFERENCES tipo_residencia (id_tipo_residencia),
+    FOREIGN KEY (tipo_licencia_id) REFERENCES tipo_licencia (id_tipo_licencia)
+);
 
+/* Creacion tabla trabajadores*/
+CREATE TABLE trabajadores(
+    id_trabajador INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT,
+    profesion_id INT,
+    datos_educacion_id INT,
+    documentacion_trabajador_id INT,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios (id_usuario),
+    FOREIGN KEY (profesion_id) REFERENCES profesiones (id_profesion),
+    FOREIGN KEY (datos_educacion_id) REFERENCES datos_educacion (id_datos_educacion),
+    FOREIGN KEY (documentacion_trabajador_id) REFERENCES documentacion_trabajador (id_documento)
+);
 
-/* Creacion de tabla solicitar servicio*/

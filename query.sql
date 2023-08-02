@@ -28,15 +28,15 @@ INSERT INTO countries (name_country) VALUES ('United States'),
 
 /* tabla countries*/
 INSERT INTO profesiones (name_profesion) VALUES ('Doctor'),
-('Enfermera'),
 ('Abogado'),
 ('Contador'),
-('Ingeniero'),
-('Profesor'),
-('Periodista'),
-('Artista'),
-('Deportista'),
-('Administrador');
+('Diseñador'),
+('Programador'),
+('Chef'),
+('Electricista'),
+('Terapeuta'),
+('Coach Personal');
+
 
 /* tabla adresses*/
 INSERT INTO addresses (calle, numero_exterior, numero_interior, country_id) VALUES
@@ -103,6 +103,7 @@ INSERT INTO datos_bancarios (usuario_id, numero_tarjeta, fecha_expiracion, codig
 (9, 5678901234567890, 0327, 789),
 (10, 2345678901234567, 0824, 234);
 
+/* tabla contactos */
 INSERT INTO contactos (telefono, usuario_id) VALUES
 ('123-456-7890', 1),
 ('555-678-9012', 2),
@@ -114,3 +115,60 @@ INSERT INTO contactos (telefono, usuario_id) VALUES
 ('012-345-6789', 8),
 ('901-234-5678', 9),
 ('109-876-5432', 10);
+
+
+/* tabla tipo de residencia */
+INSERT INTO tipo_residencia (nombre_tipo_residencia) VALUES
+('Soy Extranjero'),
+('Soy Mexicano');
+
+
+/* tabla tipo de licencia */
+INSERT INTO tipo_licencia (nombre_tipo_licencia) VALUES
+('Tipo A'),
+('Tipo B'),
+('No aplica');
+
+/* tabla documentacion del trabajador*/
+INSERT INTO documentacion_trabajador (numero_curp, numero_cartilla_militar, numero_pasaporte, tipo_residencia_id, doc_extranjero, licencia_manejo, tipo_licencia_id, numero_licencia) VALUES
+("AAA010101010","1234567890","1234567890",1,NULL,NULL,1,"1234567890"),
+("BBB010101010","9876543210","9876543210",2,NULL,NULL,2,NULL),
+("CCC010101010","7654321098","7654321098",1,NULL,NULL,3,"9876543210"),
+("DDD010101010","6543210987","6543210987",2,NULL,NULL,1,NULL),
+("EEE010101010","5432109876","5432109876",1,NULL,NULL,2,"1234567890"),
+("FFF010101010","4321098765","4321098765",2,NULL,NULL,3,NULL),
+("GGG010101010","3210987654","3210987654",1,NULL,NULL,1,"1234567890"),
+("HHH010101010","2109876543","2109876543",2,NULL,NULL,2,NULL),
+("III010101010","1098765432","1098765432",1,NULL,NULL,3,"1234567890"),
+("JJJ010101010","0987654321","0987654321",2,NULL,NULL,1,NULL);
+
+/* tabla datos eduacion */
+INSERT INTO datos_educacion (nombre_universidad, titulo_obtenido, year_graduation, proyectos_destacados) VALUES
+("Universidad A", "Licenciatura en Ingeniería Informática", '2022-06-30', "Desarrollo de un sistema de gestión de inventario"),
+("Universidad B", "Licenciatura en Administración de Empresas", '2021-07-15', "Implementación de estrategias de marketing digital"),
+("Universidad C", "Ingeniería en Telecomunicaciones", '2023-05-20', "Diseño de una red de comunicaciones para áreas rurales"),
+("Universidad D", "Licenciatura en Psicología", '2020-12-28', "Investigación sobre el impacto de la música en el estado de ánimo"),
+("Universidad E", "Licenciatura en Diseño Gráfico", '2024-04-02', "Creación de una identidad visual para una marca reconocida"),
+("Universidad F", "Ingeniería Civil", '2019-11-10', "Construcción de un puente peatonal sostenible"),
+("Universidad G", "Licenciatura en Biología", '2022-09-18', "Estudio de la diversidad de especies en un ecosistema natural"),
+("Universidad H", "Licenciatura en Medicina", '2023-03-25', "Investigación sobre nuevas terapias para enfermedades raras"),
+("Universidad I", "Ingeniería Eléctrica", '2021-08-05', "Diseño de un sistema de generación de energía renovable"),
+("Universidad J", "Licenciatura en Comunicación Social", '2020-10-12', "Producción de un documental sobre la historia local");
+
+
+/* tabla trabajadores */
+INSERT INTO trabajadores (usuario_id, profesion_id, datos_educacion_id, documentacion_trabajador_id) VALUES
+(1, 1, 1, 1),
+(2, 2, 2, 2),
+(3, 3, 3, 3),
+(4, 4, 4, 4),
+(5, 5, 5, 5),
+(6, 6, 6, 6),
+(7, 7, 7, 7),
+(8, 8, 8, 8),
+(9, 9, 9, 9),
+(10, 1, 10, 10);
+
+
+
+
