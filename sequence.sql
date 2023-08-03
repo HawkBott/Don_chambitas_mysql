@@ -5,10 +5,10 @@ use don_chambitas;
 /*tablas  1to1*/
 
 /* Creacion tabla roles*/
-CREATE TABLE roles (
-    id_rol INT AUTO_INCREMENT PRIMARY KEY,
-    name_rol VARCHAR (255)
-);
+-- CREATE TABLE roles (
+--     id_rol INT AUTO_INCREMENT PRIMARY KEY,
+--     name_rol VARCHAR (255)
+-- );
 
 /* Creacion tabla cuentas*/
 CREATE TABLE cuentas (
