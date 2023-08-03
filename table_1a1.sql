@@ -1,9 +1,9 @@
 /* Creacion tabla roles*/
-CREATE TABLE roles (
-    id_rol INT AUTO_INCREMENT PRIMARY KEY,
-    name_rol VARCHAR (255),
-    credencial VARCHAR (255)
-);
+-- CREATE TABLE roles (
+--     id_rol INT AUTO_INCREMENT PRIMARY KEY,
+--     name_rol VARCHAR (255),
+--     credencial VARCHAR (255)
+-- );
 
 /* Creacion tabla cuentas de registro*/
 CREATE TABLE cuentas (
@@ -44,4 +44,13 @@ CREATE TABLE tipo_licencia(
     id_tipo_licencia INT AUTO_INCREMENT PRIMARY KEY, 
     nombre_tipo_licencia VARCHAR (255)
 );
+
+/* Creacion de tabla solicitar empleo*/
+CREATE TABLE solitar_empledo(
+    id_solicitar_empledo INT AUTO_INCREMENT PRIMARY KEY, 
+    fecha DATE,
+    sueldo_deseado VARCHAR (255)
+);
+
+
 
