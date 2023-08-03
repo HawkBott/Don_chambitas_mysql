@@ -7,7 +7,7 @@ CREATE TABLE usuarios (
     apellido_paterno VARCHAR(255),
     apellido_materno VARCHAR(255),
     edad INT,
-    foto BLOB,
+    imagen BLOB,
     rol ENUM ('cliente', 'trabajador', 'administrador') NOT NULL
     cuenta_id INT,
     address_id INT,

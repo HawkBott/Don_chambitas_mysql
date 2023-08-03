@@ -53,7 +53,7 @@ INSERT INTO addresses (calle, numero_exterior, numero_interior, country_id) VALU
 ('Eiffel Tower', '1000', 'J', 10);
 
 /* tabla usuarios*/
-INSERT INTO usuarios (nombre_usuario, apellido_paterno, apellido_materno, edad, foto, rol, cuenta_id, address_id) VALUES
+INSERT INTO usuarios (nombre_usuario, apellido_paterno, apellido_materno, edad, imagen, rol, cuenta_id, address_id) VALUES
 ('John', 'Doe', 'Smith', 30, 'Foto1', 'cliente', 1, 1),
 ('Jane', 'Smith', 'Doe', 28, 'Foto2', 'cliente', 2, 2),
 ('Michael', 'Johnson', 'Williams', 35, 'Foto3', 'trabajador', 3, 3),
