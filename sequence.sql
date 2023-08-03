@@ -70,19 +70,20 @@ CREATE TABLE usuarios (
     apellido_paterno VARCHAR(255),
     apellido_materno VARCHAR(255),
     edad INT,
-    rol_id INT,
+    foto BLOB,
+    rol ENUM ('cliente', 'trabajador', 'administrador') NOT NULL,
     cuenta_id INT,
     address_id INT,
-    FOREIGN KEY (rol_id) REFERENCES roles(id_rol),
     FOREIGN KEY (cuenta_id) REFERENCES cuentas(id_cuenta),
     FOREIGN KEY (address_id) REFERENCES addresses(id_address)
 );
 
+
 /* Creacion tabla clientes*/
 CREATE TABLE clientes(
     id_cliente INT AUTO_INCREMENT PRIMARY KEY,
-    rol_id INT,
-    FOREIGN KEY (rol_id) REFERENCES roles (id_rol)
+    usuario_id INT,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios (id_usuario)
 );
 
 /* Creacion tabla estado o provincia*/

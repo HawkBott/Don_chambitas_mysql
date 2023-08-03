@@ -1,5 +1,6 @@
 /* tabla roles*/
-INSERT INTO roles (name_rol) VALUES ('cliente'), ('trabajador');
+-- INSERT INTO roles (name_rol) VALUES ('cliente'), 
+-- ('trabajador'),;
 
 
 /* tabla cuentas*/
@@ -52,17 +53,31 @@ INSERT INTO addresses (calle, numero_exterior, numero_interior, country_id) VALU
 ('Eiffel Tower', '1000', 'J', 10);
 
 /* tabla usuarios*/
-INSERT INTO usuarios (nombre_usuario, apellido_paterno, apellido_materno, edad, rol_id, cuenta_id, address_id) VALUES
-('Juan', 'Perez', 'Rodriguez', 30, 1, 1, 1),
-('Maria', 'Gonzalez', 'Martinez', 25, 2, 2, 2),
-('Pedro', 'Sanchez', 'Gomez', 40, 1, 3, 3),
-('Ana', 'Lopez', 'Jimenez', 35, 2, 4, 4),
-('Luis', 'Ramirez', 'Flores', 20, 1, 5, 5),
-('Sofia', 'Gutierrez', 'Castro', 18, 2, 6, 6),
-('Carlos', 'Martin', 'Diaz', 32, 1, 7, 7),
-('Laura', 'Mendez', 'Ocampo', 27, 2, 8, 8),
-('Jorge', 'Torres', 'Perez', 42, 1, 9, 9),
-('Andrea', 'Ruiz', 'Gonzalez', 37, 2, 10, 10);
+INSERT INTO usuarios (nombre_usuario, apellido_paterno, apellido_materno, edad, foto, rol, cuenta_id, address_id) VALUES
+('John', 'Doe', 'Smith', 30, 'Foto1', 'cliente', 1, 1),
+('Jane', 'Smith', 'Doe', 28, 'Foto2', 'cliente', 2, 2),
+('Michael', 'Johnson', 'Williams', 35, 'Foto3', 'trabajador', 3, 3),
+('Emily', 'Miller', 'Brown', 25, 'Foto4', 'trabajador', 4, 4),
+('Robert', 'Jones', 'Wilson', 40, 'Foto5', 'administrador', 5, 5),
+('Sophia', 'Garcia', 'Martinez', 22, 'Foto6', 'administrador', 6, 6),
+('William', 'Martinez', 'Gonzalez', 32, 'Foto7', 'cliente', 7, 7),
+('Olivia', 'Lopez', 'Hernandez', 27, 'Foto8', 'trabajador', 8, 8),
+('James', 'Davis', 'Lee', 29, 'Foto9', 'cliente', 9, 9),
+('Emma', 'Hernandez', 'Clark', 31, 'Foto10', 'trabajador', 10, 10);
+
+
+INSERT INTO clientes (usuario_id) VALUES
+(1),
+(2),
+(3),
+(4),
+(5),
+(6),
+(7),
+(8),
+(9),
+(10);
+
 
 /* tabla estado o provincia*/
 INSERT INTO estado_o_provincia (name_estado_o_provincia, country_id) VALUES
