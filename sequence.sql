@@ -32,17 +32,10 @@ CREATE TABLE datos_educacion (
     proyectos_destacados TEXT
 );
 
-/* Creacion de tabla tipo licencia*/
+/* Creacion de tabla tipo_licencia*/
 CREATE TABLE tipo_licencia(
     id_tipo_licencia INT AUTO_INCREMENT PRIMARY KEY, 
     nombre_tipo_licencia VARCHAR (255)
-);
-
-/* Creacion de tabla solicitar empleo*/
-CREATE TABLE solicitar_empleo(
-    id_solicitar_empleo INT AUTO_INCREMENT PRIMARY KEY, 
-    fecha DATE,
-    sueldo_deseado VARCHAR (255)
 );
 
 
@@ -73,14 +66,6 @@ CREATE TABLE usuarios (
     FOREIGN KEY (address_id) REFERENCES addresses(id_address)
 );
 
-/*Creacion de la table contactos*/
-CREATE TABLE contactos (
-  id_contacto INT AUTO_INCREMENT PRIMARY KEY,
-  telefono VARCHAR(255),
-  usuario_id INT,
-  FOREIGN KEY (usuario_id) REFERENCES usuarios(id_usuario)
-);
-
 /* Creacion tabla clientes*/
 CREATE TABLE clientes(
     id_cliente INT AUTO_INCREMENT PRIMARY KEY,
@@ -88,13 +73,6 @@ CREATE TABLE clientes(
     FOREIGN KEY (usuario_id) REFERENCES usuarios (id_usuario)
 );
 
-/* Creacion de tabla licencias*/
-CREATE TABLE licencias (
-    id_licencia INT AUTO_INCREMENT PRIMARY KEY,
-    numero_licencia VARCHAR (255),
-    tipo_licencia_id INT,
-    FOREIGN KEY (tipo_licencia_id) REFERENCES tipo_licencia (id_tipo_licencia)
-);
 
 /* Creacion de tabla documentacion del trabajador*/
 CREATE TABLE documentacion_trabajador(
@@ -102,11 +80,12 @@ CREATE TABLE documentacion_trabajador(
     numero_curp VARCHAR (255),
     rfc VARCHAR (255),
     tiene_licencia BOOLEAN,
+    numero_licencia VARCHAR (25),
     tiene_antecedentes_penales BOOLEAN,
     doc_antecedentes_penales BLOB,
-    licencia_id INT,
+    tipo_licencia_id INT,
     datos_educacion_id INT,
-    FOREIGN KEY (licencia_id) REFERENCES licencias (id_licencia),
+    FOREIGN KEY (tipo_licencia_id) REFERENCES tipo_licencia (id_tipo_licencia),
     FOREIGN KEY (datos_educacion_id) REFERENCES datos_educacion (id_datos_educacion)
 );
 
@@ -115,14 +94,20 @@ CREATE TABLE trabajadores(
     id_trabajador INT AUTO_INCREMENT PRIMARY KEY,
     usuario_id INT,
     profesion_id INT,
-    solicitar_empleo_id INT,
     documentacion_trabajador_id INT,
     FOREIGN KEY (usuario_id) REFERENCES usuarios (id_usuario),
     FOREIGN KEY (profesion_id) REFERENCES profesiones (id_profesion),
-    FOREIGN KEY (solicitar_empleo_id) REFERENCES solicitar_empleo (id_solicitar_empleo),
     FOREIGN KEY (documentacion_trabajador_id) REFERENCES documentacion_trabajador (id_documentacion_trabajador)
 );
 
+/* Creacion de tabla solicitar empleo*/
+CREATE TABLE solicitar_empleo(
+    id_solicitar_empleo INT AUTO_INCREMENT PRIMARY KEY, 
+    fecha DATE,
+    sueldo_deseado VARCHAR (255),
+    trabajador_id INT,
+    FOREIGN KEY (trabajador_id) REFERENCES trabajadores (id_trabajador)
+);
 
 
 /* Creacion tabla estado o provincia*/

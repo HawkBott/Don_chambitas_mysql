@@ -56,19 +56,6 @@ INSERT INTO tipo_licencia (nombre_tipo_licencia) VALUES
 ('Tipo E'),
 ('No aplica');
 
-/*Tabla solicitar empleo*/
-INSERT INTO solicitar_empleo (fecha, sueldo_deseado) VALUES
-('2023-08-01', '45000'),
-('2023-07-28', '55000'),
-('2023-07-25', '60000'),
-('2023-07-20', '50000'),
-('2023-07-18', '48000'),
-('2023-07-15', '52000'),
-('2023-07-10', '58000'),
-('2023-07-05', '54000'),
-('2023-07-02', '52000'),
-('2023-06-28', '49000');
-
 /*tablas  1toN*/
 
 /* tabla adresses*/
@@ -110,45 +97,48 @@ INSERT INTO clientes (usuario_id) VALUES
 (9),
 (10);
 
-/* tabla licencias*/
-INSERT INTO licencias (numero_licencia, tipo_licencia_id) VALUES
-('12345', 1),
-('98765', 2),
-('56789', 3),
-('43210', 1),
-('24680', 2),
-('13579', 3),
-('86420', 1),
-('10293', 2),
-('47583', 3),
-('18273', 1);
 
 /* tabla documtacion_trabajador*/
-INSERT INTO documentacion_trabajador (numero_curp, rfc, tiene_licencia, tiene_antecedentes_penales, doc_antecedentes_penales, licencia_id, datos_educacion_id) VALUES
-('ABC123456XYZ', 'RFC123456789', 1, 0, NULL, 1, 1),
-('DEF987654ZYX', 'RFC987654321', 0, 1, 'Información sobre antecedentes penales', 2, 2),
-('GHI456789ABC', 'RFC456789123', 1, 0, NULL, 3, 3),
-('JKL654321DEF', 'RFC654321987', 0, 1, 'Información sobre antecedentes penales', 4, 4),
-('MNO789012GHI', 'RFC789012345', 1, 0, NULL, 5, 5),
-('PQR210987JKL', 'RFC210987654', 0, 0, NULL, 6, 6),
-('STU543210MNO', 'RFC543210987', 1, 1, 'Información sobre antecedentes penales', 7, 7),
-('VWX987654PQR', 'RFC987654210', 0, 0, NULL, 8, 8),
-('YZA012345STU', 'RFC012345678', 1, 0, NULL, 9, 9),
-('BCD678901VWX', 'RFC678901234', 0, 1, 'Información sobre antecedentes penales', 10, 10);
+INSERT INTO documentacion_trabajador (numero_curp, rfc, tiene_licencia, numero_licencia, tiene_antecedentes_penales, doc_antecedentes_penales, tipo_licencia_id, datos_educacion_id) VALUES
+('ABC123456XYZ', 'RFC123456789', 1, 'LIC1234', 0, NULL, 1, 1),
+('DEF987654ZYX', 'RFC987654321', 0, NULL, 1, 'Información sobre antecedentes penales', 2, 2),
+('GHI456789ABC', 'RFC456789123', 1, 'LIC5678', 0, NULL, 3, 3),
+('JKL654321DEF', 'RFC654321987', 0, NULL, 1, 'Información sobre antecedentes penales', 1, 4),
+('MNO789012GHI', 'RFC789012345', 1, 'LIC9012', 0, NULL, 2, 5),
+('PQR210987JKL', 'RFC210987654', 0, NULL, 0, NULL, 3, 6),
+('STU543210MNO', 'RFC543210987', 1, 'LIC3456', 1, 'Información sobre antecedentes penales', 2, 7),
+('VWX987654PQR', 'RFC987654210', 0, NULL, 0, NULL, 1, 8),
+('YZA012345STU', 'RFC012345678', 1, 'LIC7890', 0, NULL, 1, 9),
+('BCD678901VWX', 'RFC678901234', 0, NULL, 1, 'Información sobre antecedentes penales', 3, 10);
+
 
 
 /* tabla trabajadores*/
-INSERT INTO trabajadores (usuario_id, profesion_id, solicitar_empleo_id, documentacion_trabajador_id) VALUES
-(1, 1, 1, 1),
-(2, 2, 2, 2),
-(3, 3, 3, 3),
-(4, 1, 4, 4),
-(5, 2, 5, 5),
-(6, 3, 6, 6),
-(7, 1, 7, 7),
-(8, 2, 8, 8),
-(9, 3, 9, 9),
-(10, 1, 10, 10);
+INSERT INTO trabajadores (usuario_id, profesion_id, documentacion_trabajador_id) VALUES
+(1, 1, 1),
+(2, 2, 2),
+(3, 3, 3),
+(4, 1, 4),
+(5, 2, 5),
+(6, 3, 6),
+(7, 1, 7),
+(8, 2, 8),
+(9, 3, 9),
+(10, 1, 10);
+
+/*Tabla solicitar empleo*/
+INSERT INTO solicitar_empleo (fecha, sueldo_deseado, trabajador_id) VALUES
+('2023-08-01', '45000', 1),
+('2023-07-28', '55000', 2),
+('2023-07-25', '60000', 3),
+('2023-07-20', '50000', 4),
+('2023-07-18', '48000', 5),
+('2023-07-15', '52000', 6),
+('2023-07-10', '58000', 7),
+('2023-07-05', '54000', 8),
+('2023-07-02', '52000', 9),
+('2023-06-28', '49000', 10);
+
 
 /* tabla estado o provincia*/
 INSERT INTO estado_o_provincia (name_estado_o_provincia, country_id) VALUES
