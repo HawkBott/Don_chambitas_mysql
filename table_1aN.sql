@@ -1,5 +1,3 @@
-
-
 /* Creacion tabla usuarios*/
 CREATE TABLE usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
@@ -8,11 +6,11 @@ CREATE TABLE usuarios (
     apellido_materno VARCHAR(255),
     edad INT,
     imagen BLOB,
-    rol ENUM ('cliente', 'trabajador', 'administrador') NOT NULL
+    rol ENUM ('cliente', 'trabajador', 'administrador') NOT NULL,
     cuenta_id INT,
     address_id INT,
     FOREIGN KEY (cuenta_id) REFERENCES cuentas(id_cuenta),
-    FOREIGN KEY (address_id) REFERENCES direcciones(id_direccion)
+    FOREIGN KEY (address_id) REFERENCES addresses(id_address)
 );
 
 /*Creacion de la table contactos*/
@@ -37,11 +35,11 @@ CREATE TABLE trabajadores(
     id_trabajador INT AUTO_INCREMENT PRIMARY KEY,
     usuario_id INT,
     profesion_id INT,
-    datos_educacion_id INT,
+    solicitar_empleo_id INT,
     documentacion_trabajador_id INT,
     FOREIGN KEY (usuario_id) REFERENCES usuarios (id_usuario),
     FOREIGN KEY (profesion_id) REFERENCES profesiones (id_profesion),
-    FOREIGN KEY (datos_educacion_id) REFERENCES datos_educacion (id_datos_educacion),
+    FOREIGN KEY (solicitar_empleo_id) REFERENCES solicitar_empledo (id_solicitar_empleo),
     FOREIGN KEY (documentacion_trabajador_id) REFERENCES documentacion_trabajador (id_documento)
 );
 
@@ -74,10 +72,10 @@ CREATE TABLE codigo_postal (
 /* Creacion de tabla datos bancarios*/
 CREATE TABLE datos_bancarios(
     id_datos_bancarios INT AUTO_INCREMENT PRIMARY KEY,
-    usuario_id INT,
-    numero_tarjeta INT,
+    numero_tarjeta VARCHAR (255),
     fecha_expiracion INT,
     codigo_seguridad INT,
+    usuario_id INT,
     FOREIGN KEY (usuario_id) REFERENCES usuarios (id_usuario)
 );
 
@@ -91,17 +89,27 @@ CREATE TABLE contacto(
 );
 
 
+/* Creacion de tabla licencias*/
+CREATE TABLE licencias (
+    id_licencia INT AUTO_INCREMENT PRIMARY KEY,
+    numero_licencia VARCHAR (255),
+    tipo_licencia INT,
+    FOREIGN KEY (tipo_residencia_id) REFERENCES tipo_licencia (id_tipo_licencia)
+)
+
+
 /* Creacion de tabla documentacion del trabajador*/
 CREATE TABLE documentacion_trabajador(
-    id_documento INT AUTO_INCREMENT PRIMARY KEY, 
+    id_documentacion_trabajador INT AUTO_INCREMENT PRIMARY KEY, 
     numero_curp VARCHAR (255),
-    numero_cartilla_militar VARCHAR (255),
-    numero_pasaporte VARCHAR (255),
+    rfc VARCHAR (255),
+    tiene_licencia BOOLEAN,
+    tiene_antecedentes_penales BOOLEAN,
+    antecedentes_penales BLOB,
+    licencia_id INT,
     tipo_residencia_id INT,
-    doc_extranjero BLOB,
-    licencia_manejo BOOLEAN,
-    tipo_licencia_id INT,
-    numero_licencia VARCHAR (255),
+    datos_educacion_id INT,
+    FOREIGN KEY (licencia_id) REFERENCES licencias (id_licencia),
     FOREIGN KEY (tipo_residencia_id) REFERENCES tipo_residencia (id_tipo_residencia),
-    FOREIGN KEY (tipo_licencia_id) REFERENCES tipo_licencia (id_tipo_licencia)
+    FOREIGN KEY (datos_educacion_id) REFERENCES datos_educacion (id_datos_educacion)
 );

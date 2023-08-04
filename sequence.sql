@@ -4,13 +4,7 @@ use don_chambitas;
 
 /*tablas  1to1*/
 
-/* Creacion tabla roles*/
--- CREATE TABLE roles (
---     id_rol INT AUTO_INCREMENT PRIMARY KEY,
---     name_rol VARCHAR (255)
--- );
-
-/* Creacion tabla cuentas*/
+/* Creacion tabla cuentas de registro*/
 CREATE TABLE cuentas (
     id_cuenta INT AUTO_INCREMENT PRIMARY KEY,
     correo_electronico VARCHAR (255),
@@ -50,6 +44,13 @@ CREATE TABLE tipo_licencia(
     nombre_tipo_licencia VARCHAR (255)
 );
 
+/* Creacion de tabla solicitar empleo*/
+CREATE TABLE solicitar_empleo(
+    id_solicitar_empleo INT AUTO_INCREMENT PRIMARY KEY, 
+    fecha DATE,
+    sueldo_deseado VARCHAR (255)
+);
+
 
 /*tablas  1toN*/
 
@@ -78,6 +79,13 @@ CREATE TABLE usuarios (
     FOREIGN KEY (address_id) REFERENCES addresses(id_address)
 );
 
+/*Creacion de la table contactos*/
+CREATE TABLE contactos (
+  id_contacto INT AUTO_INCREMENT PRIMARY KEY,
+  telefono VARCHAR(255),
+  usuario_id INT,
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(id_usuario)
+);
 
 /* Creacion tabla clientes*/
 CREATE TABLE clientes(
@@ -85,6 +93,45 @@ CREATE TABLE clientes(
     usuario_id INT,
     FOREIGN KEY (usuario_id) REFERENCES usuarios (id_usuario)
 );
+
+/* Creacion de tabla licencias*/
+CREATE TABLE licencias (
+    id_licencia INT AUTO_INCREMENT PRIMARY KEY,
+    numero_licencia VARCHAR (255),
+    tipo_licencia_id INT,
+    FOREIGN KEY (tipo_licencia_id) REFERENCES tipo_licencia (id_tipo_licencia)
+);
+
+/* Creacion de tabla documentacion del trabajador*/
+CREATE TABLE documentacion_trabajador(
+    id_documentacion_trabajador INT AUTO_INCREMENT PRIMARY KEY, 
+    numero_curp VARCHAR (255),
+    rfc VARCHAR (255),
+    tiene_licencia BOOLEAN,
+    tiene_antecedentes_penales BOOLEAN,
+    antecedentes_penales BLOB,
+    licencia_id INT,
+    tipo_residencia_id INT,
+    datos_educacion_id INT,
+    FOREIGN KEY (licencia_id) REFERENCES licencias (id_licencia),
+    FOREIGN KEY (tipo_residencia_id) REFERENCES tipo_residencia (id_tipo_residencia),
+    FOREIGN KEY (datos_educacion_id) REFERENCES datos_educacion (id_datos_educacion)
+);
+
+/* Creacion tabla trabajadores*/
+CREATE TABLE trabajadores(
+    id_trabajador INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT,
+    profesion_id INT,
+    solicitar_empleo_id INT,
+    documentacion_trabajador_id INT,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios (id_usuario),
+    FOREIGN KEY (profesion_id) REFERENCES profesiones (id_profesion),
+    FOREIGN KEY (solicitar_empleo_id) REFERENCES solicitar_empleo (id_solicitar_empleo),
+    FOREIGN KEY (documentacion_trabajador_id) REFERENCES documentacion_trabajador (id_documentacion_trabajador)
+);
+
+
 
 /* Creacion tabla estado o provincia*/
 CREATE TABLE estado_o_provincia (
@@ -105,47 +152,30 @@ CREATE TABLE codigo_postal (
 /* Creacion de tabla datos bancarios*/
 CREATE TABLE datos_bancarios(
     id_datos_bancarios INT AUTO_INCREMENT PRIMARY KEY,
-    usuario_id INT,
     numero_tarjeta VARCHAR (255),
     fecha_expiracion INT,
     codigo_seguridad INT,
+    usuario_id INT,
     FOREIGN KEY (usuario_id) REFERENCES usuarios (id_usuario)
 );
 
-
 /* Creacion de tabla contacto*/
-CREATE TABLE contactos(
+CREATE TABLE contacto(
     id_contacto INT AUTO_INCREMENT PRIMARY KEY,
     telefono VARCHAR (255),
     usuario_id INT,
     FOREIGN KEY (usuario_id) REFERENCES usuarios (id_usuario)
 );
 
-/* Creacion de tabla documentacion del trabajador*/
-CREATE TABLE documentacion_trabajador(
-    id_documento INT AUTO_INCREMENT PRIMARY KEY, 
-    numero_curp VARCHAR (255),
-    numero_cartilla_militar VARCHAR (255),
-    numero_pasaporte VARCHAR (255),
-    tipo_residencia_id INT,
-    doc_extranjero BLOB,
-    licencia_manejo BOOLEAN,
-    tipo_licencia_id INT,
-    numero_licencia VARCHAR (255),
-    FOREIGN KEY (tipo_residencia_id) REFERENCES tipo_residencia (id_tipo_residencia),
-    FOREIGN KEY (tipo_licencia_id) REFERENCES tipo_licencia (id_tipo_licencia)
-);
 
-/* Creacion tabla trabajadores*/
-CREATE TABLE trabajadores(
-    id_trabajador INT AUTO_INCREMENT PRIMARY KEY,
-    usuario_id INT,
-    profesion_id INT,
-    datos_educacion_id INT,
-    documentacion_trabajador_id INT,
-    FOREIGN KEY (usuario_id) REFERENCES usuarios (id_usuario),
-    FOREIGN KEY (profesion_id) REFERENCES profesiones (id_profesion),
-    FOREIGN KEY (datos_educacion_id) REFERENCES datos_educacion (id_datos_educacion),
-    FOREIGN KEY (documentacion_trabajador_id) REFERENCES documentacion_trabajador (id_documento)
-);
+/*tablas  NtoM*/
 
+/* Creacion de tabla solicitar servicio*/
+CREATE TABLE solicitar_servicio(
+    id_solicitud INT AUTO_INCREMENT PRIMARY KEY,
+    fecha DATE,
+    cliente_id INT,
+    trabajador_id INT,
+    FOREIGN KEY (cliente_id) REFERENCES clientes (id_cliente),
+    FOREIGN KEY (trabajador_id) REFERENCES trabajadores (id_trabajador)
+);

@@ -1,7 +1,4 @@
-/* tabla roles*/
--- INSERT INTO roles (name_rol) VALUES ('cliente'), 
--- ('trabajador'),;
-
+/*tablas  1to1*/
 
 /* tabla cuentas*/
 INSERT INTO cuentas (correo_electronico, my_password) VALUES ('usuario1@ejemplo.com', 'contraseña1'),
@@ -27,7 +24,7 @@ INSERT INTO countries (name_country) VALUES ('United States'),
 ('United Kingdom'),
 ('France');
 
-/* tabla countries*/
+/* tabla profesiones*/
 INSERT INTO profesiones (name_profesion) VALUES ('Doctor'),
 ('Abogado'),
 ('Contador'),
@@ -38,6 +35,47 @@ INSERT INTO profesiones (name_profesion) VALUES ('Doctor'),
 ('Terapeuta'),
 ('Coach Personal');
 
+/* tabla datos educacion*/
+INSERT INTO datos_educacion (nombre_universidad, titulo_obtenido, year_graduation, proyectos_destacados) VALUES
+('Universidad Nacional', 'Ingeniería en Sistemas', '2022-05-15', 'Desarrollo de una plataforma de e-learning.'),
+('Universidad Tecnológica', 'Licenciatura en Ciencias de la Computación', '2021-12-20', 'Creación de un sistema de reconocimiento facial.'),
+('Instituto Politécnico', 'Arquitectura', '2023-06-28', 'Diseño de un edificio sostenible con energía renovable.'),
+('Universidad Central', 'Medicina', '2022-07-10', 'Investigación sobre el tratamiento de enfermedades raras.'),
+('Universidad del Futuro', 'Ciencias Ambientales', '2023-03-02', 'Estudio de la biodiversidad en una reserva natural.'),
+('Instituto Tecnológico Avanzado', 'Ingeniería Electrónica', '2021-09-18', 'Diseño y construcción de un robot autónomo.'),
+('Universidad de las Artes Creativas', 'Diseño Gráfico', '2020-12-05', 'Realización de una campaña publicitaria para una marca reconocida.'),
+('Universidad de Ciencias Empresariales', 'Administración de Empresas', '2023-01-30', 'Análisis financiero de una empresa multinacional.'),
+('Instituto de Ciencias Sociales', 'Psicología', '2022-11-14', 'Estudio sobre el comportamiento humano en situaciones de estrés.'),
+('Universidad Internacional de Idiomas', 'Traducción e Interpretación', '2021-08-22', 'Traducción de un libro clásico a varios idiomas.');
+
+/* tabla tipo de residencia */
+INSERT INTO tipo_residencia (nombre_tipo_residencia) VALUES
+('Soy Extranjero'),
+('Soy Mexicano');
+
+
+/* tabla tipo de licencia */
+INSERT INTO tipo_licencia (nombre_tipo_licencia) VALUES
+('Tipo A'),
+('Tipo B'),
+('Tipo C'),
+('Tipo E'),
+('No aplica');
+
+/*Tabla solicitar empleo*/
+INSERT INTO solicitar_empleo (fecha, sueldo_deseado) VALUES
+('2023-08-01', '45000'),
+('2023-07-28', '55000'),
+('2023-07-25', '60000'),
+('2023-07-20', '50000'),
+('2023-07-18', '48000'),
+('2023-07-15', '52000'),
+('2023-07-10', '58000'),
+('2023-07-05', '54000'),
+('2023-07-02', '52000'),
+('2023-06-28', '49000');
+
+/*tablas  1toN*/
 
 /* tabla adresses*/
 INSERT INTO addresses (calle, numero_exterior, numero_interior, country_id) VALUES
@@ -54,18 +92,18 @@ INSERT INTO addresses (calle, numero_exterior, numero_interior, country_id) VALU
 
 /* tabla usuarios*/
 INSERT INTO usuarios (nombre_usuario, apellido_paterno, apellido_materno, edad, imagen, rol, cuenta_id, address_id) VALUES
-('John', 'Doe', 'Smith', 30, 'Foto1', 'cliente', 1, 1),
-('Jane', 'Smith', 'Doe', 28, 'Foto2', 'cliente', 2, 2),
-('Michael', 'Johnson', 'Williams', 35, 'Foto3', 'trabajador', 3, 3),
-('Emily', 'Miller', 'Brown', 25, 'Foto4', 'trabajador', 4, 4),
-('Robert', 'Jones', 'Wilson', 40, 'Foto5', 'administrador', 5, 5),
-('Sophia', 'Garcia', 'Martinez', 22, 'Foto6', 'administrador', 6, 6),
-('William', 'Martinez', 'Gonzalez', 32, 'Foto7', 'cliente', 7, 7),
-('Olivia', 'Lopez', 'Hernandez', 27, 'Foto8', 'trabajador', 8, 8),
-('James', 'Davis', 'Lee', 29, 'Foto9', 'cliente', 9, 9),
-('Emma', 'Hernandez', 'Clark', 31, 'Foto10', 'trabajador', 10, 10);
+('Juan', 'Gómez', 'Pérez', 30, NULL, 'cliente', 1, 1),
+('María', 'López', 'García', 25, NULL, 'trabajador', 2, 2),
+('Pedro', 'Ramírez', 'Martínez', 35, NULL, 'administrador', 3, 3),
+('Ana', 'Torres', 'Hernández', 28, NULL, 'cliente', 4, 4),
+('Luis', 'González', 'Sánchez', 22, NULL, 'trabajador', 5, 5),
+('Laura', 'Díaz', 'Vargas', 29, NULL, 'administrador', 6, 6),
+('Carlos', 'Reyes', 'Mendoza', 32, NULL, 'cliente', 7, 7),
+('Marta', 'Castillo', 'Rojas', 27, NULL, 'trabajador', 8, 8),
+('Eduardo', 'Navarro', 'Silva', 31, NULL, 'administrador', 9, 9),
+('Sofía', 'Morales', 'Luna', 26, NULL, 'cliente', 10, 10);
 
-
+/* tabla clientes*/
 INSERT INTO clientes (usuario_id) VALUES
 (1),
 (2),
@@ -78,6 +116,44 @@ INSERT INTO clientes (usuario_id) VALUES
 (9),
 (10);
 
+/* tabla licencias*/
+INSERT INTO licencias (numero_licencia, tipo_licencia_id) VALUES
+('12345', 1),
+('98765', 2),
+('56789', 3),
+('43210', 1),
+('24680', 2),
+('13579', 3),
+('86420', 1),
+('10293', 2),
+('47583', 3),
+('18273', 1);
+
+/* tabla documtacion_trabajador*/
+INSERT INTO documentacion_trabajador (numero_curp, rfc, tiene_licencia, tiene_antecedentes_penales, antecedentes_penales, licencia_id, tipo_residencia_id, datos_educacion_id) VALUES
+('ABC123456XYZ', 'RFC123456789', 1, 0, NULL, 1, 1, 1),
+('DEF987654ZYX', 'RFC987654321', 0, 1, NULL, 2, 2, 2),
+('GHI456789ABC', 'RFC456789123', 1, 0, NULL, 3, 1, 3),
+('JKL654321DEF', 'RFC654321987', 0, 1, NULL, 4, 2, 4),
+('MNO789012GHI', 'RFC789012345', 1, 0, NULL, 5, 1, 5),
+('PQR210987JKL', 'RFC210987654', 0, 0, NULL, 6, 2, 6),
+('STU543210MNO', 'RFC543210987', 1, 1, NULL, 7, 1, 7),
+('VWX987654PQR', 'RFC987654210', 0, 0, NULL, 8, 2, 8),
+('YZA012345STU', 'RFC012345678', 1, 0, NULL, 9, 1, 9),
+('BCD678901VWX', 'RFC678901234', 0, 1, NULL, 10, 2, 10);
+
+/* tabla trabajadores*/
+INSERT INTO trabajadores (usuario_id, profesion_id, solicitar_empleo_id, documentacion_trabajador_id) VALUES
+(1, 1, 1, 1),
+(2, 2, 2, 2),
+(3, 3, 3, 3),
+(4, 1, 4, 4),
+(5, 2, 5, 5),
+(6, 3, 6, 6),
+(7, 1, 7, 7),
+(8, 2, 8, 8),
+(9, 3, 9, 9),
+(10, 1, 10, 10);
 
 /* tabla estado o provincia*/
 INSERT INTO estado_o_provincia (name_estado_o_provincia, country_id) VALUES
@@ -106,17 +182,17 @@ INSERT INTO codigo_postal (numero_codigo_postal, estado_o_provincia_id) VALUES
 (91321, 4);
 
 /* tabla datos_bancarios */
-INSERT INTO datos_bancarios (usuario_id, numero_tarjeta, fecha_expiracion, codigo_seguridad) VALUES
-(1, 1234567890123456, 1225, 123),
-(2, 9876543210987654, 0324, 456),
-(3, 4567890123456789, 0726, 789),
-(4, 7890123456789012, 0923, 234),
-(5, 2345678901234567, 0527, 567),
-(6, 8901234567890123, 0125, 890),
-(7, 3456789012345678, 0624, 123),
-(8, 9012345678901234, 1023, 456),
-(9, 5678901234567890, 0327, 789),
-(10, 2345678901234567, 0824, 234);
+INSERT INTO datos_bancarios (numero_tarjeta, fecha_expiracion, codigo_seguridad, usuario_id) VALUES
+('1234-5678-9012-3456', 1225, 123, 1),
+('9876-5432-1098-7654', 0724, 789, 2),
+('5678-9012-3456-7890', 1123, 456, 3),
+('4321-0987-6543-2109', 0626, 234, 4),
+('7890-1234-5678-9012', 0925, 678, 5),
+('3456-7890-1234-5678', 0327, 345, 6),
+('4567-8901-2345-6789', 1024, 890, 7),
+('7890-1234-5678-9012', 0823, 567, 8),
+('2345-6789-0123-4567', 0429, 123, 9),
+('8901-2345-6789-0123', 0628, 901, 10);
 
 /* tabla contactos */
 INSERT INTO contactos (telefono, usuario_id) VALUES
@@ -131,59 +207,20 @@ INSERT INTO contactos (telefono, usuario_id) VALUES
 ('901-234-5678', 9),
 ('109-876-5432', 10);
 
+/*tablas  NtoM*/
 
-/* tabla tipo de residencia */
-INSERT INTO tipo_residencia (nombre_tipo_residencia) VALUES
-('Soy Extranjero'),
-('Soy Mexicano');
-
-
-/* tabla tipo de licencia */
-INSERT INTO tipo_licencia (nombre_tipo_licencia) VALUES
-('Tipo A'),
-('Tipo B'),
-('No aplica');
-
-/* tabla documentacion del trabajador*/
-INSERT INTO documentacion_trabajador (numero_curp, numero_cartilla_militar, numero_pasaporte, tipo_residencia_id, doc_extranjero, licencia_manejo, tipo_licencia_id, numero_licencia) VALUES
-("AAA010101010","1234567890","1234567890",1,NULL,NULL,1,"1234567890"),
-("BBB010101010","9876543210","9876543210",2,NULL,NULL,2,NULL),
-("CCC010101010","7654321098","7654321098",1,NULL,NULL,3,"9876543210"),
-("DDD010101010","6543210987","6543210987",2,NULL,NULL,1,NULL),
-("EEE010101010","5432109876","5432109876",1,NULL,NULL,2,"1234567890"),
-("FFF010101010","4321098765","4321098765",2,NULL,NULL,3,NULL),
-("GGG010101010","3210987654","3210987654",1,NULL,NULL,1,"1234567890"),
-("HHH010101010","2109876543","2109876543",2,NULL,NULL,2,NULL),
-("III010101010","1098765432","1098765432",1,NULL,NULL,3,"1234567890"),
-("JJJ010101010","0987654321","0987654321",2,NULL,NULL,1,NULL);
-
-/* tabla datos eduacion */
-INSERT INTO datos_educacion (nombre_universidad, titulo_obtenido, year_graduation, proyectos_destacados) VALUES
-("Universidad A", "Licenciatura en Ingeniería Informática", '2022-06-30', "Desarrollo de un sistema de gestión de inventario"),
-("Universidad B", "Licenciatura en Administración de Empresas", '2021-07-15', "Implementación de estrategias de marketing digital"),
-("Universidad C", "Ingeniería en Telecomunicaciones", '2023-05-20', "Diseño de una red de comunicaciones para áreas rurales"),
-("Universidad D", "Licenciatura en Psicología", '2020-12-28', "Investigación sobre el impacto de la música en el estado de ánimo"),
-("Universidad E", "Licenciatura en Diseño Gráfico", '2024-04-02', "Creación de una identidad visual para una marca reconocida"),
-("Universidad F", "Ingeniería Civil", '2019-11-10', "Construcción de un puente peatonal sostenible"),
-("Universidad G", "Licenciatura en Biología", '2022-09-18', "Estudio de la diversidad de especies en un ecosistema natural"),
-("Universidad H", "Licenciatura en Medicina", '2023-03-25', "Investigación sobre nuevas terapias para enfermedades raras"),
-("Universidad I", "Ingeniería Eléctrica", '2021-08-05', "Diseño de un sistema de generación de energía renovable"),
-("Universidad J", "Licenciatura en Comunicación Social", '2020-10-12', "Producción de un documental sobre la historia local");
-
-
-/* tabla trabajadores */
-INSERT INTO trabajadores (usuario_id, profesion_id, datos_educacion_id, documentacion_trabajador_id) VALUES
-(1, 1, 1, 1),
-(2, 2, 2, 2),
-(3, 3, 3, 3),
-(4, 4, 4, 4),
-(5, 5, 5, 5),
-(6, 6, 6, 6),
-(7, 7, 7, 7),
-(8, 8, 8, 8),
-(9, 9, 9, 9),
-(10, 1, 10, 10);
-
+/* tabla solicitar servicio */
+INSERT INTO solicitar_servicio (fecha, cliente_id, trabajador_id) VALUES
+('2023-08-01', 1, 1),
+('2023-07-28', 2, 2),
+('2023-07-25', 3, 3),
+('2023-07-20', 4, 4),
+('2023-07-18', 5, 5),
+('2023-07-15', 6, 6),
+('2023-07-10', 7, 7),
+('2023-07-05', 8, 8),
+('2023-07-02', 9, 9),
+('2023-06-28', 10, 10);
 
 
 

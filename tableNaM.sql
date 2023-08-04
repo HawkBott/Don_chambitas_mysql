@@ -2,6 +2,7 @@
 /* Creacion de tabla solicitar servicio*/
 CREATE TABLE solicitar_servicio(
     id_solicitud INT AUTO_INCREMENT PRIMARY KEY,
+    fecha DATE,
     cliente_id INT,
     trabajador_id INT
     FOREIGN KEY (cliente_id) REFERENCES clientes (id_cliente)
