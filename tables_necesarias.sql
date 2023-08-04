@@ -1,7 +1,7 @@
 /* tabla roles*/
-INSERT INTO roles (name_rol) VALUES ('cliente'), 
-('trabajador'),
-('administrador');
+-- INSERT INTO roles (name_rol) VALUES ('cliente'), 
+-- ('trabajador'),
+-- ('administrador');
 
 
 /* tabla countries*/
