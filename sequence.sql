@@ -32,12 +32,6 @@ CREATE TABLE datos_educacion (
     proyectos_destacados TEXT
 );
 
-/* Creacion de tabla residencia*/
-CREATE TABLE tipo_residencia(
-    id_tipo_residencia INT AUTO_INCREMENT PRIMARY KEY, 
-    nombre_tipo_residencia VARCHAR (255)
-);
-
 /* Creacion de tabla tipo licencia*/
 CREATE TABLE tipo_licencia(
     id_tipo_licencia INT AUTO_INCREMENT PRIMARY KEY, 
@@ -109,12 +103,10 @@ CREATE TABLE documentacion_trabajador(
     rfc VARCHAR (255),
     tiene_licencia BOOLEAN,
     tiene_antecedentes_penales BOOLEAN,
-    antecedentes_penales BLOB,
+    doc_antecedentes_penales BLOB,
     licencia_id INT,
-    tipo_residencia_id INT,
     datos_educacion_id INT,
     FOREIGN KEY (licencia_id) REFERENCES licencias (id_licencia),
-    FOREIGN KEY (tipo_residencia_id) REFERENCES tipo_residencia (id_tipo_residencia),
     FOREIGN KEY (datos_educacion_id) REFERENCES datos_educacion (id_datos_educacion)
 );
 

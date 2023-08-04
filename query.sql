@@ -48,12 +48,6 @@ INSERT INTO datos_educacion (nombre_universidad, titulo_obtenido, year_graduatio
 ('Instituto de Ciencias Sociales', 'Psicología', '2022-11-14', 'Estudio sobre el comportamiento humano en situaciones de estrés.'),
 ('Universidad Internacional de Idiomas', 'Traducción e Interpretación', '2021-08-22', 'Traducción de un libro clásico a varios idiomas.');
 
-/* tabla tipo de residencia */
-INSERT INTO tipo_residencia (nombre_tipo_residencia) VALUES
-('Soy Extranjero'),
-('Soy Mexicano');
-
-
 /* tabla tipo de licencia */
 INSERT INTO tipo_licencia (nombre_tipo_licencia) VALUES
 ('Tipo A'),
@@ -130,17 +124,18 @@ INSERT INTO licencias (numero_licencia, tipo_licencia_id) VALUES
 ('18273', 1);
 
 /* tabla documtacion_trabajador*/
-INSERT INTO documentacion_trabajador (numero_curp, rfc, tiene_licencia, tiene_antecedentes_penales, antecedentes_penales, licencia_id, tipo_residencia_id, datos_educacion_id) VALUES
-('ABC123456XYZ', 'RFC123456789', 1, 0, NULL, 1, 1, 1),
-('DEF987654ZYX', 'RFC987654321', 0, 1, NULL, 2, 2, 2),
-('GHI456789ABC', 'RFC456789123', 1, 0, NULL, 3, 1, 3),
-('JKL654321DEF', 'RFC654321987', 0, 1, NULL, 4, 2, 4),
-('MNO789012GHI', 'RFC789012345', 1, 0, NULL, 5, 1, 5),
-('PQR210987JKL', 'RFC210987654', 0, 0, NULL, 6, 2, 6),
-('STU543210MNO', 'RFC543210987', 1, 1, NULL, 7, 1, 7),
-('VWX987654PQR', 'RFC987654210', 0, 0, NULL, 8, 2, 8),
-('YZA012345STU', 'RFC012345678', 1, 0, NULL, 9, 1, 9),
-('BCD678901VWX', 'RFC678901234', 0, 1, NULL, 10, 2, 10);
+INSERT INTO documentacion_trabajador (numero_curp, rfc, tiene_licencia, tiene_antecedentes_penales, doc_antecedentes_penales, licencia_id, datos_educacion_id) VALUES
+('ABC123456XYZ', 'RFC123456789', 1, 0, NULL, 1, 1),
+('DEF987654ZYX', 'RFC987654321', 0, 1, 'Información sobre antecedentes penales', 2, 2),
+('GHI456789ABC', 'RFC456789123', 1, 0, NULL, 3, 3),
+('JKL654321DEF', 'RFC654321987', 0, 1, 'Información sobre antecedentes penales', 4, 4),
+('MNO789012GHI', 'RFC789012345', 1, 0, NULL, 5, 5),
+('PQR210987JKL', 'RFC210987654', 0, 0, NULL, 6, 6),
+('STU543210MNO', 'RFC543210987', 1, 1, 'Información sobre antecedentes penales', 7, 7),
+('VWX987654PQR', 'RFC987654210', 0, 0, NULL, 8, 8),
+('YZA012345STU', 'RFC012345678', 1, 0, NULL, 9, 9),
+('BCD678901VWX', 'RFC678901234', 0, 1, 'Información sobre antecedentes penales', 10, 10);
+
 
 /* tabla trabajadores*/
 INSERT INTO trabajadores (usuario_id, profesion_id, solicitar_empleo_id, documentacion_trabajador_id) VALUES

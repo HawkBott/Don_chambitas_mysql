@@ -93,8 +93,8 @@ CREATE TABLE contacto(
 CREATE TABLE licencias (
     id_licencia INT AUTO_INCREMENT PRIMARY KEY,
     numero_licencia VARCHAR (255),
-    tipo_licencia INT,
-    FOREIGN KEY (tipo_residencia_id) REFERENCES tipo_licencia (id_tipo_licencia)
+    tipo_licencia_id INT,
+    FOREIGN KEY (tipo_licencia_id) REFERENCES tipo_licencia (id_tipo_licencia)
 )
 
 
@@ -105,11 +105,9 @@ CREATE TABLE documentacion_trabajador(
     rfc VARCHAR (255),
     tiene_licencia BOOLEAN,
     tiene_antecedentes_penales BOOLEAN,
-    antecedentes_penales BLOB,
+    doc_antecedentes_penales BLOB,
     licencia_id INT,
-    tipo_residencia_id INT,
     datos_educacion_id INT,
     FOREIGN KEY (licencia_id) REFERENCES licencias (id_licencia),
-    FOREIGN KEY (tipo_residencia_id) REFERENCES tipo_residencia (id_tipo_residencia),
     FOREIGN KEY (datos_educacion_id) REFERENCES datos_educacion (id_datos_educacion)
 );
